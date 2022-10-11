@@ -45,14 +45,14 @@
   border-radius: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .menu-link_highlighted {
     -webkit-text-stroke: 0;
     text-shadow: none;
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 480px) {
   .menu-link_style_root {
     margin-left: 4px;
     padding: 5px 12px;

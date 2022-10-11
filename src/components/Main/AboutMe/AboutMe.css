@@ -1,0 +1,134 @@
+.about-me__article {
+  margin: 59px 0 0px;
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  column-gap: 270px;
+  grid-template-areas:
+    'header foto'
+    'about foto'
+    'story foto'
+    'story foto'
+    'story foto'
+    'story foto'
+    'link foto'
+  ;
+}
+
+.about-me__header {
+  grid-area: header;
+  padding: 0 0 3px;
+  margin: 0;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1.16;
+  letter-spacing: -0.04em;
+}
+
+.about-me__about {
+  grid-area: about;
+  padding: 0;
+  margin: 0 0 2px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11;
+}
+
+.about-me__story {
+  grid-area: story;
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.57;
+}
+
+.about-me__foto {
+  grid-area: foto;
+  border-radius: 10px;
+  width: 270px;
+  height: 327px;
+  object-fit: cover;
+  justify-self: flex-end;
+}
+
+.about-me__link {
+  grid-area: link;
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.21;
+  text-decoration: none;
+  color: #FFFFFF;
+  transition: opacity 200ms ease-in-out;
+  align-self: flex-end;
+}
+.about-me__link:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 1024px) {
+  .about-me__article {
+    column-gap: 49px;
+  }
+
+  .about-me__header {
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  .about-me__about {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .about-me__story {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .about-me__foto {
+    width: 255px;
+    height: 307px;
+  }
+
+}
+
+@media (max-width: 680px) {
+  .about-me__article {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    'foto'
+    'header'
+    'about'
+    'story'
+    'link';
+  }
+
+  .about-me__header {
+    font-size: 30px;
+    line-height: 1.2;
+    margin: 42px 0 18px;
+  }
+
+  .about-me__about {
+    font-size: 11px;
+    line-height: 1.45;
+    margin-bottom: 20px;
+  }
+
+  .about-me__story {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .about-me__foto {
+    height: 352px;
+    width: 100%;
+    justify-self: center;
+  }
+
+  .about-me__link {
+    margin-top: 39px;
+  }
+}

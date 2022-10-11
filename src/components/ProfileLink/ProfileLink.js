@@ -7,7 +7,7 @@ function ProfileLink({linkStyle, ...props}) {
     <Link
       className={ `profile-link profile-link_style_${linkStyle} link link_style_green` }
       {...props}>
-      <span className="profile-link__text">Аккаунт</span>
+      <p className="profile-link__text">Аккаунт</p>
       <ProfileButton />
     </Link>
   );

@@ -25,7 +25,7 @@
   left: 8px;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 480px) {
   .menu-button {
     width: 40px;
     height: 40px;

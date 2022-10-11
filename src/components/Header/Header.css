@@ -1,7 +1,6 @@
 .header {
   --sidepad: 70px;
   width: calc(100% - 2*var(--sidepad));
-  max-width: 1140px;
   padding: 15px var(--sidepad);
   display: flex;
   justify-content: space-between;
@@ -10,29 +9,8 @@
   line-height: 1.33;
 }
 
-.header__link {
-  color: inherit;
-  text-decoration-line: none;
-  border-radius: 3px;
-  transition: box-shadow 200ms ease-in-out;
-}
-
-.header__link:hover {
-  box-shadow: 0 0 10px 4px #3DDC84;
-}
-@media (max-width: 360px) {
-  .header__link:hover {
-    box-shadow: 0 0 4px 2px #3DDC84;
-  }
-}
-
-.header__link_style_logo {
-  margin-left: 0;
-  margin-top: 3px;
-  padding: 8px;
-  border-radius: 50%;
-  height: 22px;
-  width: 22px;
+.header_style_blue {
+  background-color: #073042;
 }
 
 .header__nav-movies_style_horizontal {
@@ -42,57 +20,6 @@
   align-items: center;
   padding-top: 2px;
   padding-left: 34px;
-}
-
-.header__link_style_horizontal {
-  margin-left: 10px;
-  padding: 8px 20px;
-}
-
-.header__link_style_vertical {
-  font-size: 18px;
-  line-height: 1.22;
-  font-weight: 500;
-  padding: 5px 10px;
-  border-bottom: 2px solid rgba(0, 0, 0, 0);
-  margin-bottom: 16px;
-}
-
-.header__link-profile_style_vertical {
-  font-size: 14px;
-  line-height: 1.14;
-  font-weight: 500;
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  padding: 2px 10px;
-}
-
-.header__link-profile_style_horizontal {
-  font-size: 14px;
-  line-height: 1.14;
-  font-weight: 500;
-  margin-left: auto;
-  display: flex;
-  padding: 2px 10px;
-}
-
-.header__link_highlighted {
-  background-color: #3DDC84;
-  color: black;
-  -webkit-text-stroke: 1px black;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.header__link_selected {
-  padding: 5px 0;
-  border-bottom: 2px solid white;
-  transition: none;
-  border-radius: 0;
-  cursor: default;
-}
-.header__link_selected:hover {
-  box-shadow: none;
 }
 
 .header__nav-root {
@@ -110,42 +37,22 @@
   height: calc(100% - 274px);
 }
 
-
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .header {
     --sidepad: 30px;
   }
-
-  .header__link_highlighted {
-    -webkit-text-stroke: 0;
-    text-shadow: none;
-  }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 480px) {
   .header {
     --sidepad: 14px;
     font-size: 10px;
     line-height: 1.6;
   }
 
-  .header__link_style_horizontal {
-    margin-left: 4px;
-    padding: 5px 12px;
-  }
-
-  .header__link_style_vertical {
-    margin-bottom: 12px;
-  }
-
   .header__nav-root {
     padding: 9px 0;
   }
-
-  /* .header__link_style_logo {
-    margin-left: 0px;
-    padding: 8px;
-  } */
 
   .header__nav-movies_style_vertical {
     padding-top: 140px;

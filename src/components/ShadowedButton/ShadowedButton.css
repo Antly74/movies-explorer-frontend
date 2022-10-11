@@ -6,7 +6,7 @@
   box-shadow: 0 0 10px 4px #3DDC84;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 480px) {
   .shadowed-button:hover {
     box-shadow: 0 0 4px 2px #3DDC84;
   }

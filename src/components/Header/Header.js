@@ -50,7 +50,7 @@ function Header() {
   }
 
   return (
-    <header className="header">
+    <header className={`header ${(location.pathname === '/') ? 'header_style_blue' : ''}`}>
       <LogoLink />
       <Routes>
         <Route path="/" element={

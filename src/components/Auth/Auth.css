@@ -1,6 +1,6 @@
 .auth {
   margin: auto 30px calc((100vh - 560px)/2);
-  width: calc(100%-60px);
+  width: calc(100% - 60px);
   max-width: 396px;
   height: 560px;
   display: flex;

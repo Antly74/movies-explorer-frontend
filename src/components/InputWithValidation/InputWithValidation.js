@@ -19,10 +19,10 @@ function InputWithValidation ({label, inputStyle, ...props}) {
           onInput={handleInput}
         />
       </label>
-      <span className={`input__error input__error_style_${inputStyle} input__error_visible`}
+      <span className={`input__error input__error_style_${inputStyle} ` /*input__error_visible*/}
         id={`${props.id}-error`}
       >
-        Здесь будет ошибка здесь будет ошибка здесь будет ошибка здесь будет ошибка здесь будет ошибка здесь будет ошибка здесь будет ошибка здесь будет ошибка здесь будет ошибка здесь будет ошибка здесь будет ошибказдесь будет ошибка здесь будет ошибка здесь будет ошибка
+        Здесь будет ошибка
       </span>
     </div>
   )

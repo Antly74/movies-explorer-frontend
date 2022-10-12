@@ -8,20 +8,68 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Auth from '../Auth/Auth';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import { Route, Routes } from 'react-router-dom';
 
 
 function App() {
   return (
     <div className="page">
-      {/* <Header /> */}
-      {/* <Auth formStyle="register" /> */}
-      <Auth formStyle="login" />
-      {/* <Movies /> */}
-      {/* <SavedMovies /> */}
-      {/* <Main /> */}
-      {/* <Footer /> */}
-      {/* <PageNotFound/> */}
-      {/* <Preloader/> */}
+      <Routes>
+        <Route path="/"
+          element={
+            <>
+              <Header />
+              <Main />
+              <Footer />
+            </>
+          }
+        />
+        <Route path="/movies"
+          element={
+            <>
+              <Header />
+              <Movies />
+              <Footer />
+            </>
+          }
+        />
+        <Route path="/saved-movies"
+          element={
+            <>
+              <Header />
+              <SavedMovies />
+              <Footer />
+            </>
+          }
+        />
+        <Route path="/profile"
+          element={
+            <Profile />
+          }
+        />
+
+        <Route path="/signin"
+          element={
+            <>
+              <Auth formStyle="login" />
+              <InfoTooltip isOk={true} message="Все получилось!" /> {/* для демонстрации */}
+            </>
+          }
+        />
+        <Route path="/signup"
+          element={
+            <Auth formStyle="register" />
+          }
+        />
+
+        <Route path="/signout"
+          element={
+            <PageNotFound />
+          }
+        />
+        {/* <Preloader/> */}
+      </Routes>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import './Header.css';
@@ -52,27 +52,27 @@ function Header() {
   return (
     <header className={`header ${(location.pathname === '/') ? 'header_style_blue' : ''}`}>
       <LogoLink />
-      <Routes>
-        <Route path="/" element={
+      {(location.pathname === '/') ?
+        (
           <nav className="header__nav-root">
             <MenuLink to="/signup" text="Регистрация" linkStyle="root" />
             <MenuLink to="/signin" text="Войти" linkStyle="root" highlighted />
           </nav>
-        }/>
-        <Route path="*" element={
+        ) :
+        (
           isWide ?
             (<nav className="header__nav-movies_style_horizontal">
-              <MenuLink to="/movies" text="Фильмы" linkStyle="horizontal" activated />
+              <MenuLink to="/movies" text="Фильмы" linkStyle="horizontal" /> {/*activated*/}
               <MenuLink to="/saved-movies" text="Сохранённые фильмы" linkStyle="horizontal" />
               <ProfileLink linkStyle="horizontal"/>
             </nav>)
-          : (<MenuButton onClick={handleMenuButtonClick}/>)
-        }/>
-      </Routes>
+            : (<MenuButton onClick={handleMenuButtonClick}/>)
+        )
+      }
       <Popup isOpen={menuIsOpen} onClose={closeMenu} name="menu">
         <nav className="header__nav-movies_style_vertical">
           <MenuLink to="/" text="Главная" linkStyle="vertical" />
-          <MenuLink to="/movies" text="Фильмы" linkStyle="vertical" activated />
+          <MenuLink to="/movies" text="Фильмы" linkStyle="vertical" /> {/*activated*/}
           <MenuLink to="/saved-movies" text="Сохранённые фильмы" linkStyle="vertical" />
           <ProfileLink linkStyle="vertical"/>
         </nav>

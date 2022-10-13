@@ -5,11 +5,11 @@ import './Movies.css';
 
 function Movies() {
   return (
-    <div className="movies">
+    <main className="movies">
       <SearchForm />
       <MoviesCardList />
       <button className="movies__more-button link link_style_green">Ещё</button>
-    </div>
+    </main>
   );
 }
 

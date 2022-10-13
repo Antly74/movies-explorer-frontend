@@ -10,7 +10,7 @@ function Auth({formStyle}) {
   }
 
   return (
-    <div className="auth">
+    <main className="auth">
       <LogoLink />
       <form className="auth__form" onSubmit={handleSubmit}>
         <h2 className="auth__header">{formStyle === 'login' ? 'Рады видеть!' : 'Добро пожаловать!'}</h2>
@@ -25,7 +25,7 @@ function Auth({formStyle}) {
           <Link to={formStyle === 'login' ? '/signup' : '/signin'} className="auth__question-link link link_style_blue">{formStyle === 'login' ? 'Регистрация' : 'Войти'}</Link>
         </div>
       </form>
-    </div>
+    </main>
   );
 }
 

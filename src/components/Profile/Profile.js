@@ -10,8 +10,7 @@ function Profile() {
   }
 
   return (
-    <div className="profile">
-      <Header />
+    <main className="profile">
       <form className="profile__form" onSubmit={handleSubmit}>
         <h2 className="profile__header">Привет, Виталий!</h2>
         <InputWithValidation inputStyle="profile" label="Имя" value="Виталий"/>
@@ -19,7 +18,7 @@ function Profile() {
         <button className="profile__submit link link_style_green" type="submit">Редактировать</button>
         <Link to="/signout" className="profile__signout link link_style_red">Выйти из аккаунта</Link>
       </form>
-    </div>
+    </main>
   );
 }
 

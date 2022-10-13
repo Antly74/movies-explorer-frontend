@@ -4,10 +4,10 @@ import SearchForm from '../SearchForm/SearchForm';
 
 function SavedMovies() {
   return (
-    <div className="saved-movies">
+    <main className="saved-movies">
       <SearchForm />
       <MoviesCardList />
-    </div>
+    </main>
   );
 }
 

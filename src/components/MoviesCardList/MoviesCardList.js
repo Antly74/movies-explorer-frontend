@@ -5,7 +5,7 @@ function MoviesCardList() {
   return (
     <div className="movies-card-list">
       <MoviesCard />
-      <MoviesCard />
+      <MoviesCard isLiked={true}/>
       {/* <MoviesCard /> */}
       {/* <MoviesCard />
       <MoviesCard /> */}

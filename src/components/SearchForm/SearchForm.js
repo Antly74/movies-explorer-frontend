@@ -10,7 +10,7 @@ function SearchForm() {
 
   return (
     <form className="search-form" onSubmit={handleSubmit}>
-      <input id="search" name="search" className="search-form__input" placeholder="Фильм"/>
+      <input id="search" name="search" className="search-form__input" placeholder="Фильм" required/>
       <button
         aria-label="Найти"
         type="submit"

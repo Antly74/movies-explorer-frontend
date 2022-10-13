@@ -45,7 +45,10 @@ function App() {
         />
         <Route path="/profile"
           element={
-            <Profile />
+            <>
+              <Header />
+              <Profile />
+            </>
           }
         />
 

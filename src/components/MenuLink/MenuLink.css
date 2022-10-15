@@ -15,10 +15,15 @@
   line-height: 1.38;
   margin-left: 4px;
   padding: 6px 6px;
+  border-bottom: 2px solid transparent;
 }
 
 .menu-link_style_horizontal_activated {
   pointer-events: none;
+  margin: 0 6px 0 10px;
+  padding: 5px 0;
+  border-bottom: 2px solid white;
+  border-radius: 0;
 }
 
 .menu-link_style_vertical {

@@ -62,7 +62,7 @@ function Header() {
         (
           isWide ?
             (<nav className="header__nav-movies_style_horizontal">
-              <MenuLink to="/movies" text="Фильмы" linkStyle="horizontal" /> {/*activated*/}
+              <MenuLink to="/movies" text="Фильмы" linkStyle="horizontal" />
               <MenuLink to="/saved-movies" text="Сохранённые фильмы" linkStyle="horizontal" />
               <ProfileLink linkStyle="horizontal"/>
             </nav>)
@@ -72,7 +72,7 @@ function Header() {
       <Popup isOpen={menuIsOpen} onClose={closeMenu} name="menu">
         <nav className="header__nav-movies_style_vertical">
           <MenuLink to="/" text="Главная" linkStyle="vertical" />
-          <MenuLink to="/movies" text="Фильмы" linkStyle="vertical" /> {/*activated*/}
+          <MenuLink to="/movies" text="Фильмы" linkStyle="vertical" />
           <MenuLink to="/saved-movies" text="Сохранённые фильмы" linkStyle="vertical" />
           <ProfileLink linkStyle="vertical"/>
         </nav>

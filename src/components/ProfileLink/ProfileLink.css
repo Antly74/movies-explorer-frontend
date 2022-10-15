@@ -1,0 +1,23 @@
+.profile-link {
+  color: inherit;
+  text-decoration-line: none;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.profile-link_style_horizontal {
+  margin-left: auto;
+  padding-left: 8px;
+}
+
+.profile-link_style_vertical {
+  margin-top: auto;
+  padding: 2px 10px;
+}
+
+.profile-link__text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+}

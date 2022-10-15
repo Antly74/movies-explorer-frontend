@@ -1,0 +1,4 @@
+.link {
+  cursor: pointer;
+  transition: box-shadow 200ms ease-in-out, opacity 200ms ease-in-out;
+}

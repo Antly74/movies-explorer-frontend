@@ -1,0 +1,30 @@
+.profile-button {
+  width: 26px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: #313131;
+  margin-left: 19px;
+  position: relative;
+}
+.profile-button::before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  border: 2px solid white;
+  top: 7px;
+  left: 9px;
+}
+.profile-button::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border: 2px solid white;
+  border-bottom: none;
+  top: 17px;
+  left: 7px;
+}

@@ -1,0 +1,24 @@
+.info-tooltip__icon {
+  margin: 60px 0 0px;
+}
+
+.info-tooltip__title {
+  width: calc(100% - 36px*2);
+  margin: 26px 36px 60px;
+  padding: 0;
+  font-size: 20px;
+  line-height: 1.21;
+  font-weight: 900;
+}
+
+@media (max-width: 480px) {
+  .info-tooltip__icon {
+    margin-top: 50px;
+  }
+
+  .info-tooltip__title {
+    font-size: 14px;
+    width: calc(100% - 22px*2);
+    margin: 35px 22px 50px;
+  }
+}

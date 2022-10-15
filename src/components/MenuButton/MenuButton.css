@@ -1,0 +1,45 @@
+.menu-button {
+  width: 44px;
+  height: 44px;
+  position: relative;
+}
+.menu-button::before {
+  content: "";
+  width: 28px;
+  height: 17px;
+  border: 0px;
+  border-bottom: solid 3px white;
+  border-top: solid 3px white;
+  background-color: transparent;
+  position: absolute;
+  top: 11px;
+  left: 8px;
+}
+.menu-button::after {
+  content: "";
+  width: 28px;
+  height: 0px;
+  border-top: solid 3px white;
+  position: absolute;
+  top: 21px;
+  left: 8px;
+}
+
+@media (max-width: 480px) {
+  .menu-button {
+    width: 40px;
+    height: 40px;
+    margin-top: 2px;
+    margin-left: 1px;
+  }
+  .menu-button::before {
+    width: 22px;
+    top: 9px;
+    left: 9px;
+  }
+  .menu-button::after {
+    width: 22px;
+    top: 19px;
+    left: 9px;
+  }
+}

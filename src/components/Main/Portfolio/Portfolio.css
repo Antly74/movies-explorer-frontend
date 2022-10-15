@@ -1,0 +1,31 @@
+.portfolio__links {
+  padding: 0 0 106px;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio__link-item {
+  border-bottom: 1px solid #424242;
+}
+
+.portfolio__link-item:last-of-type {
+  border-bottom: none;
+}
+
+@media (max-width: 1024px) {
+  .portfolio__links {
+    padding-bottom: 72px;
+  }
+
+  .portfolio__link-item {
+    border-bottom: 1px solid #E6E6E6;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio__links {
+    padding-bottom: 50px;
+  }
+}

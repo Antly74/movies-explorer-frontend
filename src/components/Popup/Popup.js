@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import './Popup.css';
 
-const Popup = ({ isOpen, name, onClose, children }) => {
+const Popup = ({ isOpen, name, onClose, style, children }) => {
 
   useEffect(() => {
     // ограничиваем навешивание обработчика: если не открыт, то не нужно навешивать
@@ -35,7 +35,7 @@ const Popup = ({ isOpen, name, onClose, children }) => {
       <div className={`popup__container popup__container_type_${name}`}>
         {children}
         <button
-          className='popup__close-button'
+          className={`popup__close-button link link_style_${style || 'blue'}`}
           type='button'
           onClick={onClose}
         />

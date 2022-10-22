@@ -66,6 +66,10 @@
   background-color: #2F2F2F;
 }
 
+.input_error-value {
+  color: #EE3465;
+}
+
 .input__error {
   color: #EE3465;
   visibility: hidden;

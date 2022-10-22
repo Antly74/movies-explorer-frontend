@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Header from '../Header/Header';
 import InputWithValidation from '../InputWithValidation/InputWithValidation';
 import './Profile.css';
 

@@ -1,16 +1,16 @@
 import './MoviesCard.css';
-import testpic from '../../../images/testpic.png';
 import { useLocation } from 'react-router-dom';
+import { convertMinutesToTime } from '../../../utils/utils';
 
-function MoviesCard({isLiked}) {
+function MoviesCard({card, isLiked}) {
 
   const isMoviesLocation = useLocation().pathname === '/movies';
 
   return (
     <article className="movies-card">
-      <img className="movies-card__picture" src={testpic} alt="33 слова о дизайне"/>
+      <img className="movies-card__picture" src={'https://api.nomoreparties.co' + card.image.formats.small.url} alt={card.nameRU}/>
       <div className="movies-card__caption">
-        <h2 className="movies-card__caption-text">33 слова о дизайне asdfasdf ad ad fasd fasdfasdf asdfsd adf asdf adfasd fasd fad fasdf asd fasdf adf 7777777</h2>
+        <h2 className="movies-card__caption-text">{card.nameRU}</h2>
         <button
           aria-label="Лайк"
           type="button"
@@ -19,7 +19,7 @@ function MoviesCard({isLiked}) {
           } link link_style_green`}
         />
       </div>
-      <div className="movies-card__duration">1ч 42м</div>
+      <div className="movies-card__duration">{convertMinutesToTime(card.duration)}</div>
     </article>
   );
 }

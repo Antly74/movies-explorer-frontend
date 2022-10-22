@@ -8,32 +8,56 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Auth from '../Auth/Auth';
-import InfoTooltip from '../InfoTooltip/InfoTooltip';
-import { Outlet, Route, Routes } from 'react-router-dom';
-import { CurrentUserContext } from '../../context/CurrentUserContext';
+import { Outlet, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useEffect, useState } from 'react';
-
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { auth } from '../../utils/Auth';
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState({loggedIn: false});
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [currentUser, setCurrentUser] = useState({loggedIn: true});
+
+  console.log(`location.pathname = ${location.pathname}`);
 
   // при подключении компонената
   useEffect(() => {
-
     // Если есть LoggedIn, то пробуем достать с сервера данные пользователя
     if (localStorage.getItem('loggedIn')) {
-      setCurrentUser(curr => {return {loggedIn: true}});
-      // auth.getUserInfo()
-      //   .then((data) => {
-      //     setCurrentUser(curr => {return {...curr, loggedIn: true, email: data.email, _id: data._id}});
-      //   })
-      //   .catch((err) => {
-      //     // console.log(`токен кривой: ${err} `);
-      //     history.push('/signin');
-      //   });
+      auth.getUserInfo()
+        .then((data) => {
+          setCurrentUser(curr => {return {...curr, loggedIn: true, name: data.name, email: data.email, _id: data._id}});
+        })
+        .catch(() => {
+          navigate('/');
+        });
+    } else {
+      setCurrentUser(curr => {return {loggedIn: false}});
     }
   }, []);
+
+  useEffect(() => {
+    if (location.pathname === '/signout') {
+      localStorage.removeItem('loggedIn');
+      auth.logout()
+        .catch((err) => console.log(err))
+        .finally(() => navigate('/')); // неважно с ошибкой или нет, переходим на домашнюю
+      setCurrentUser(curr => {return {...curr, loggedIn: false, email: ''}});
+    }
+  }, [location]);
+
+  function handleLogin() {
+    localStorage.setItem('loggedIn', 'yes');
+    setCurrentUser(curr => {return {...curr, loggedIn: true}});
+    navigate('/movies');
+  }
+
+  function handleRegister() {
+    navigate('/login');
+  }
 
   return (
     <div className="page">
@@ -49,16 +73,19 @@ function App() {
             }
           >
             <Route index element={<Main />} />
-            <Route path="movies" element={<Movies />} />
-            <Route path="saved-movies" element={<SavedMovies />} />
-            <Route path="profile" element={<Profile />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="movies" element={<Movies />} />
+              <Route path="saved-movies" element={<SavedMovies />} />
+              <Route path="profile" element={<Profile />} />
+            </Route>
           </Route>
 
-          <Route path="/signin" element={<Auth formStyle="login" />} />
-          <Route path="/signup" element={<Auth formStyle="register" />} />
-          <Route path="/signout" element={<PageNotFound />} />
-          {/* <Preloader/> */}
-          {/* <InfoTooltip isOk={true} message="Все получилось!" /> */}
+          <Route path="/signin" element={<Auth formStyle="login" onSubmit={handleLogin}/>} />
+          <Route path="/signup" element={<Auth formStyle="register" onSubmit={handleRegister} />} />
+          <Route path="/signout" />
+
+          <Route path="*" element={<PageNotFound />} />
+
         </Routes>
       </CurrentUserContext.Provider>
     </div>

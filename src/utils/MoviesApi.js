@@ -1,20 +1,10 @@
-import { MOVIES_URL } from "./constants";
+import Api from "./Api";
+import { MOVIES_URL, SHORT_MOVIE_DURATION } from "./constants";
 
-class MoviesApi {
+class MoviesApi extends Api {
   constructor(options) {
-    this._baseUrl = options.baseUrl;
-    this._headers = {
-      'Content-Type': 'application/json'
-    };
-    this._allMovies = [];
-  }
-
-  _handleResponse(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return res.json()
-      .then(({message}) => Promise.reject(`${message}`));
+    super(options);
+    this._savedMovies = [];
   }
 
   _getMovies() {
@@ -23,40 +13,68 @@ class MoviesApi {
       headers: this._headers
     };
 
-    return fetch(`${this._baseUrl}`, requestOptions)
+    return fetch(`${this._baseUrl}/beatfilm-movies`, requestOptions)
       .then(this._handleResponse)
       .then((data) => {
-        this._allMovies = data;
+        this._savedMovies = data.map((curr) => {
+          return {
+            country: curr.country,
+            director: curr.director,
+            duration: curr.duration,
+            year: curr.year,
+            description: curr.description,
+            image: this._baseUrl + curr.image.url,
+            trailerLink: curr.trailerLink,
+            thumbnail: this._baseUrl + curr.image.formats.thumbnail.url,
+            // owner: null,
+            movieId: curr.id,
+            nameRU: curr.nameRU,
+            nameEN: curr.nameEN,
+            //_id: null
+          };
+        });
         return true;
       });
   }
 
-  _getFilteredMoviesFromSaved(filterString) {
+  _getIsShortMovie(filteredMovies, isShortMovie) {
+    if (isShortMovie) {
+      return filteredMovies.filter(element => element.duration <= SHORT_MOVIE_DURATION);
+    }
+    return filteredMovies;
+  }
+
+  _getFilteredMoviesFromSaved(filterString, isShortMovie) {
     const filterRegExp = new RegExp(filterString, 'i');
-    const result = this._allMovies.filter((element, index) => {
-      return element.nameRU.search(filterRegExp) >= 0 ||
-        element.description.search(filterRegExp) >= 0;
+    const result = this._savedMovies.filter((element, index) => {
+      return (element.nameRU.search(filterRegExp) >= 0 ||
+        element.description.search(filterRegExp) >= 0);
     });
 
     // сохраняем в localStorage
     localStorage.setItem('filteredMovies', JSON.stringify(result));
     localStorage.setItem('filterString', filterString);
 
-    return result;
+    return this._getIsShortMovie(result, isShortMovie);
   }
 
-  getFilteredMovies(filterString) {
+  getFilteredMovies(filterString, isShortMovie) {
     // проверяем локальное хранилище
     if (localStorage.getItem('filterString') === filterString) {
-      return Promise.resolve(JSON.parse(localStorage.getItem('filteredMovies')));
+      return Promise.resolve(
+        this._getIsShortMovie(
+          JSON.parse(localStorage.getItem('filteredMovies')),
+          isShortMovie
+        )
+      );
     }
 
-    if (this._allMovies.length === 0) {
+    if (this._savedMovies.length === 0) {
       return this._getMovies()
-        .then(() => this._getFilteredMoviesFromSaved(filterString))
+        .then(() => this._getFilteredMoviesFromSaved(filterString, isShortMovie))
     } else {
       return Promise.resolve(
-        this._getFilteredMoviesFromSaved(filterString)
+        this._getFilteredMoviesFromSaved(filterString, isShortMovie)
       )
     }
   }

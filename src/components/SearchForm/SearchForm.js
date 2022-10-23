@@ -3,17 +3,13 @@ import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import { useState } from 'react';
 
-function SearchForm({onSearch}) {
+function SearchForm({filterString, onChangeFilterString, onChangeIsShortMovie}) {
 
-  const [filterString, setFilterString] = useState('');
-
-  function handleInput(e) {
-    setFilterString(e.target.value);
-  }
+  const [inputValue, setInputValue] = useState(filterString);
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSearch(filterString);
+    onChangeFilterString(inputValue);
   }
 
   return (
@@ -24,8 +20,8 @@ function SearchForm({onSearch}) {
         className="search-form__input"
         placeholder="Фильм"
         required
-        value={filterString}
-        onInput={handleInput}
+        value={inputValue}
+        onInput={(e) => setInputValue(e.target.value)}
       />
       <button
         aria-label="Найти"
@@ -36,7 +32,7 @@ function SearchForm({onSearch}) {
         Найти
       </button>
 
-      <FilterCheckbox className="search-form__switch" name="Короткометражки"/>
+      <FilterCheckbox className="search-form__switch" name="Короткометражки" onChange={onChangeIsShortMovie} />
     </form>
   );
 }

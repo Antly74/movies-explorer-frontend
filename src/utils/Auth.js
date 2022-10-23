@@ -1,18 +1,7 @@
-class Auth {
-  constructor(options) {
-    this._baseUrl = options.baseUrl;
-    this._headers = {
-      'Content-Type': 'application/json'
-    };
-  }
+import Api from "./Api";
+import { BASE_URL } from "./constants";
 
-  _handleResponse(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return res.json()
-      .then(({message}) => Promise.reject(`${message}`));
-  }
+class Auth extends Api {
 
   register({name, email, password}) {
     const requestOptions = {
@@ -74,8 +63,7 @@ class Auth {
 }
 
 const auth = new Auth({
-  // baseUrl: 'https://api.movies.antly74.nomorepartiesxyz.ru'
-  baseUrl: 'http://localhost:3020'
+  baseUrl: BASE_URL
 });
 
 export { auth };

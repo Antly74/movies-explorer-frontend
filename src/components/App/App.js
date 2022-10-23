@@ -1,5 +1,4 @@
 import './App.css';
-import Preloader from '../Preloader/Preloader';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import PageNotFound from '../PageNotFound/PageNotFound';
@@ -21,8 +20,6 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState({loggedIn: true});
 
-  console.log(`location.pathname = ${location.pathname}`);
-
   // при подключении компонената
   useEffect(() => {
     // Если есть LoggedIn, то пробуем достать с сервера данные пользователя
@@ -42,6 +39,9 @@ function App() {
   useEffect(() => {
     if (location.pathname === '/signout') {
       localStorage.removeItem('loggedIn');
+      localStorage.removeItem('filteredMovies');
+      localStorage.removeItem('filterString');
+
       auth.logout()
         .catch((err) => console.log(err))
         .finally(() => navigate('/')); // неважно с ошибкой или нет, переходим на домашнюю
@@ -53,10 +53,6 @@ function App() {
     localStorage.setItem('loggedIn', 'yes');
     setCurrentUser(curr => {return {...curr, loggedIn: true}});
     navigate('/movies');
-  }
-
-  function handleRegister() {
-    navigate('/login');
   }
 
   return (
@@ -81,8 +77,8 @@ function App() {
           </Route>
 
           <Route path="/signin" element={<Auth formStyle="login" onSubmit={handleLogin}/>} />
-          <Route path="/signup" element={<Auth formStyle="register" onSubmit={handleRegister} />} />
-          <Route path="/signout" />
+          <Route path="/signup" element={<Auth formStyle="register" onSubmit={handleLogin} />} />
+          <Route path="/signout" element={<></>} />
 
           <Route path="*" element={<PageNotFound />} />
 

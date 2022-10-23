@@ -3,16 +3,16 @@ import errorIcon from '../../images/error.svg';
 import Popup from '../Popup/Popup';
 import './InfoTooltip.css';
 
-function InfoTooltip({isOpen, isOk, message, onClose}) {
+function InfoTooltip({flags, onClose}) {
 
   function handleClose() {
     onClose();
   }
 
   return (
-    <Popup isOpen={isOpen} onClose={handleClose} name="info" style={isOk ? 'green' : 'red'}>
-      <img alt={isOk ? 'ок' : 'ошибка'} className="info-tooltip__icon" src={isOk ? okIcon : errorIcon}/>
-      <h2 className="info-tooltip__title">{message}</h2>
+    <Popup isOpen={flags.isOpen} onClose={handleClose} name="info" style={flags.isOk ? 'green' : 'red'}>
+      <img alt={flags.isOk ? 'ок' : 'ошибка'} className="info-tooltip__icon" src={flags.isOk ? okIcon : errorIcon}/>
+      <h2 className="info-tooltip__title">{flags.message}</h2>
     </Popup>
   );
 }

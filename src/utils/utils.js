@@ -1,8 +1,17 @@
 function getCardsCountRow() {
-  return window.innerWidth >= 1470 ? Math.floor((window.innerWidth - 120) / 270) :
-    window.innerWidth >= 1200 ? 4 :
-    window.innerWidth >= 870 ? 3 :
-    window.innerWidth >= 590 ? 2 : 1;
+  const width = document.documentElement.clientWidth;
+  const result = {
+    row: width >= 1470 ? Math.floor((width - 120) / 270) :
+      width >= 1200 ? 4 :
+      width >= 870 ? 3 :
+      width >= 590 ? 2 : 1
+  };
+
+  result.next = result.row === 1 ? 2 : 1;
+  result.first = result.row === 1 ? 5 :
+    result.row === 2 ? 4 : 3;
+
+  return result;
 }
 
 function convertMinutesToTime(duration) {

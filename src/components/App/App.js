@@ -35,6 +35,7 @@ function App() {
     } else {
       setCurrentUser(curr => {return {loggedIn: false}});
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -53,6 +54,7 @@ function App() {
           navigate('/');
         });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   function handleLogin() {

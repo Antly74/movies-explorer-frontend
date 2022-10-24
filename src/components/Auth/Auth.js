@@ -28,7 +28,7 @@ function Auth({formStyle, onSubmit}) {
       });
   }
 
-  function handleLogin({email, password}, onEndLoading) {
+  function handleLogin({email, password}) {
     auth.login({email, password})
       .then(() => {
         openInfoTooltip(true, 'Вы успешно вошли!');
@@ -55,7 +55,7 @@ function Auth({formStyle, onSubmit}) {
         <h2 className="auth__header">{formStyle === 'login' ? 'Рады видеть!' : 'Добро пожаловать!'}</h2>
         {formStyle === 'login' ? '' :
           <InputWithValidation inputStyle="auth" onInputEvent={handleInput} type="text"
-            placeholder="введите Ваше имя" minLength="2" maxLength="30" required
+            placeholder="введите Ваше имя" minLength="2" maxLength="30" required pattern="[a-zA-Zа-яА-Я -]*"
             label="Имя" id="name" value={values.name || ''} errorText={errors.name}
           />
         }

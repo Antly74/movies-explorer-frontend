@@ -12,6 +12,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useEffect, useState } from 'react';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { auth } from '../../utils/Auth';
+import { savedMovies } from '../../utils/MainApi';
 
 function App() {
 
@@ -38,21 +39,38 @@ function App() {
 
   useEffect(() => {
     if (location.pathname === '/signout') {
-      localStorage.removeItem('loggedIn');
-      localStorage.removeItem('filteredMovies');
-      localStorage.removeItem('filterString');
+
 
       auth.logout()
         .catch((err) => console.log(err))
-        .finally(() => navigate('/')); // неважно с ошибкой или нет, переходим на домашнюю
-      setCurrentUser(curr => {return {...curr, loggedIn: false, email: ''}});
+        .finally(() => { // неважно с ошибкой или нет, разлогиниваем
+          localStorage.removeItem('loggedIn');
+          localStorage.removeItem('filteredMovies');
+          localStorage.removeItem('filterString');
+          localStorage.removeItem('isShortMovie');
+          savedMovies.logoff();
+          setCurrentUser(curr => { return {loggedIn: false}});
+          navigate('/');
+        });
     }
   }, [location]);
 
   function handleLogin() {
     localStorage.setItem('loggedIn', 'yes');
     setCurrentUser(curr => {return {...curr, loggedIn: true}});
-    navigate('/movies');
+    navigate('/movies', { replace: true });
+    auth.getUserInfo()
+      .then((data) => {
+        setCurrentUser(curr => {return {...curr, name: data.name, email: data.email, _id: data._id}});
+      })
+      .catch(() => {
+        setCurrentUser(curr => { return {loggedIn: false}});
+        navigate('/');
+      });
+  }
+
+  function handleChangeProfile(name, email) {
+    setCurrentUser(curr => {return {...curr, name, email}});
   }
 
   return (
@@ -72,7 +90,7 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path="movies" element={<Movies />} />
               <Route path="saved-movies" element={<SavedMovies />} />
-              <Route path="profile" element={<Profile />} />
+              <Route path="profile" element={<Profile onChange={handleChangeProfile}/>} />
             </Route>
           </Route>
 

@@ -1,9 +1,10 @@
 import {useState} from 'react';
 
 export function useInfoTooltip(onSubmit) {
+
   const [flagsInfoTooltip, setFlagsInfoTooltip] = useState({isOpen: false, isOk: false, message: ''});
 
-  function openInfoTooltip (isOk, message, onClose) {
+  function openInfoTooltip (isOk, message) {
 
     // ставим таймер на автоматическое закрытие
     const closeTimer = setTimeout(() => {
@@ -12,14 +13,14 @@ export function useInfoTooltip(onSubmit) {
           if (curr.isOk) {
             setTimeout(() => onSubmit(), 0);
           }
-          return {isOpen: false, isOk: curr.isOk, message, closeTimer: null, onClose: null}
+          return {isOpen: false, isOk: curr.isOk, message, closeTimer: null}
         } else {
           return curr; // иначе возвращаем то же самое, чтобы не перерисовывалось
         }
       });
     }, 4000);
 
-    setFlagsInfoTooltip({isOk, isOpen: true, message, closeTimer, onClose});
+    setFlagsInfoTooltip({isOk, isOpen: true, message, closeTimer});
   }
 
   function closeInfoTooltip() {
@@ -30,7 +31,7 @@ export function useInfoTooltip(onSubmit) {
       if (curr.isOk) {
         setTimeout(() => onSubmit(), 0);
       }
-      return {...curr, isOpen: false, closeTimer: null, onClose: null}
+      return {...curr, isOpen: false, closeTimer: null}
     });
   }
 

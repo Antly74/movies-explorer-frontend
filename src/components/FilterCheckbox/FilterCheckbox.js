@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import './FilterCheckbox.css';
 
-function FilterCheckbox({name, className, onChange}) {
-
-  const [value, setValue] = useState(false);
+function FilterCheckbox({name, className, onChange, value}) {
 
   function handelChange(e) {
-    setValue(e.target.checked);
     onChange(e.target.checked);
   }
 

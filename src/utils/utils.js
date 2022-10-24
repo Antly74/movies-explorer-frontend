@@ -8,8 +8,7 @@ function getCardsCountRow() {
   };
 
   result.next = result.row === 1 ? 2 : 1;
-  result.first = result.row === 1 ? 5 :
-    result.row === 2 ? 4 : 3;
+  result.first = result.row === 1 ? 5 : 4;
 
   return result;
 }

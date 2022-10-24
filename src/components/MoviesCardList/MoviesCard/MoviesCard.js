@@ -7,7 +7,6 @@ function MoviesCard({card, onSaveMovie, onDeleteMovie}) {
   const isMoviesLocation = useLocation().pathname === '/movies';
 
   function handleLikeClick() {
-    debugger;
     if (card.owner) {
       onDeleteMovie(card);
     } else {
@@ -17,7 +16,9 @@ function MoviesCard({card, onSaveMovie, onDeleteMovie}) {
 
   return (
     <article className="movies-card">
-      <img className="movies-card__picture" src={card.image} alt={card.nameRU}/>
+      <a href={card.trailerLink} target="_blank" rel="noopener noreferrer">
+        <img className="movies-card__picture" src={card.image} alt={card.nameRU}/>
+      </a>
       <div className="movies-card__caption">
         <h2 className="movies-card__caption-text">{card.nameRU}</h2>
         <button

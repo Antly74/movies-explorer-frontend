@@ -108,6 +108,10 @@ class MainApi extends Api {
     }
   }
 
+  logoff() {
+    this._savedMovies = undefined;
+  }
+
 }
 
 const savedMovies = new MainApi({

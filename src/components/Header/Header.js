@@ -1,5 +1,7 @@
 import { useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 import './Header.css';
 import MenuButton from '../MenuButton/MenuButton';
@@ -13,6 +15,8 @@ function isWindowWide() {
 }
 
 function Header() {
+
+  const currentUser = useContext(CurrentUserContext);
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [isWide, setIsWide] = useState(isWindowWide());
@@ -52,7 +56,7 @@ function Header() {
   return (
     <header className={`header ${(location.pathname === '/') ? 'header_style_blue' : ''}`}>
       <LogoLink />
-      {(location.pathname === '/') ?
+      {(!currentUser.loggedIn) ?
         (
           <nav className="header__nav-root">
             <MenuLink to="/signup" text="Регистрация" linkStyle="root" />
@@ -62,7 +66,7 @@ function Header() {
         (
           isWide ?
             (<nav className="header__nav-movies_style_horizontal">
-              <MenuLink to="/movies" text="Фильмы" linkStyle="horizontal" /> {/*activated*/}
+              <MenuLink to="/movies" text="Фильмы" linkStyle="horizontal" />
               <MenuLink to="/saved-movies" text="Сохранённые фильмы" linkStyle="horizontal" />
               <ProfileLink linkStyle="horizontal"/>
             </nav>)
@@ -72,7 +76,7 @@ function Header() {
       <Popup isOpen={menuIsOpen} onClose={closeMenu} name="menu">
         <nav className="header__nav-movies_style_vertical">
           <MenuLink to="/" text="Главная" linkStyle="vertical" />
-          <MenuLink to="/movies" text="Фильмы" linkStyle="vertical" /> {/*activated*/}
+          <MenuLink to="/movies" text="Фильмы" linkStyle="vertical" />
           <MenuLink to="/saved-movies" text="Сохранённые фильмы" linkStyle="vertical" />
           <ProfileLink linkStyle="vertical"/>
         </nav>

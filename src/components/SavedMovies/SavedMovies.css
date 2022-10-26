@@ -1,5 +1,5 @@
 .saved-movies {
-  margin-bottom: 241px;
+  margin-bottom: auto;
   --sidepad: 70px;
   width: calc(100% - 2*var(--sidepad));
   display: flex;
@@ -9,7 +9,7 @@
 
 @media (max-width: 1024px) {
   .saved-movies {
-    margin-bottom: 152px;
+    margin-bottom: auto;
     --sidepad: 30px;
   }
 }

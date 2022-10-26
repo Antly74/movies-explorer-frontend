@@ -1,5 +1,5 @@
 .movies {
-  margin-bottom: 80px;
+  margin-bottom: auto;
   --sidepad: 70px;
   width: calc(100% - 2*var(--sidepad));
   display: flex;

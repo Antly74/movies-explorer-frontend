@@ -13,3 +13,6 @@ https://github.com/Antly74/movies-explorer-frontend
 
 ### Деплой
 https://movies.antly74.nomorepartiesxyz.ru
+
+### Pull request
+https://github.com/Antly74/movies-explorer-frontend/pull/2

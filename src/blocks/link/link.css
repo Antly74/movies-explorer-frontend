@@ -2,3 +2,13 @@
   cursor: pointer;
   transition: box-shadow 200ms ease-in-out, opacity 200ms ease-in-out;
 }
+
+.link:disabled
+{
+  cursor: default;
+  transition: none;
+}
+
+.link:disabled:hover {
+  box-shadow: none;
+}
